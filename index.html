@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <title>Openboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="options__container">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+    <div class="tools__container scale__tools">
+      <img src="Icons/Pencil.svg" alt="Pencil Icon" class="pencil" />
+      <img src="Icons/Eraser.svg" alt="Eraser Icon" class="eraser" />
+      <img src="Icons/Redo.svg" alt="Redo Icon" class="redo" />
+      <img src="Icons/Undo.svg" alt="Undo Icon" class="undo" />
+      <img src="Icons/Upload.svg" alt="Upload Icon" class="upload" />
+      <img src="Icons/Download.svg" alt="Download Icon" class="download" />
+      <img src="Icons/StickyNote.svg" alt="Sticky Note Icon" class="sticky" />
+    </div>
+
+    <div class="pencil__tool">
+      <div class="pencil__width__container">
+        <input type="range" min="2" max="10" value="3" />
+      </div>
+      <div class="pencil__color__container">
+        <div class="black pencil__color"></div>
+        <div class="blue pencil__color"></div>
+        <div class="red pencil__color"></div>
+      </div>
+    </div>
+    <div class="eraser__tool">
+      <input type="range" min="2" max="10" value="3" />
+    </div>
+
+    <!-- <div class="sticky__container">
+      <div class="header__container">
+        <div class="minimize"></div>
+        <div class="remove"></div>
+      </div>
+      <div class="note__container">
+        <textarea></textarea>
+      </div>
+    </div> -->
+    <script src="./tools.js"></script>
+  </body>
+</html>
