@@ -1,6 +1,21 @@
 let canvas = document.querySelector("canvas");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+
+function setCanvasSize() {
+  if (window.innerWidth <= 600) {
+    canvas.width = window.innerWidth * 0.8; // Set canvas width to 80% of window width
+    canvas.height = window.innerHeight * 0.5; // Set canvas height to 50% of window height
+  } else {
+    // Reset the canvas size for larger screens
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+}
+
+// Call the function initially
+setCanvasSize();
+
+// Add an event listener to execute the function whenever the window is resized
+window.addEventListener("resize", setCanvasSize);
 
 let pencilColor = document.querySelectorAll(".pencil__color");
 let pencilWidthElem = document.querySelector(".pencil__width");
@@ -30,20 +45,24 @@ let mousedown = false;
 
 canvas.addEventListener("mousedown", (e) => {
   mousedown = true;
-  beginPath({
+  let data = {
     x: e.clientX,
     y: e.clientY,
-  });
+  };
+
+  //send data to servver
+  socket.emit("beginPath", data);
 });
 
 canvas.addEventListener("mousemove", (e) => {
   if (mousedown) {
-    drawStroke({
+    let data = {
       x: e.clientX,
       y: e.clientY,
       color: eraserFlag ? eraserColor : penColor,
       with: eraserFlag ? eraserWidth : pencilWidth,
-    });
+    };
+    socket.emit("drawStroke", data);
   }
 });
 
@@ -58,22 +77,25 @@ undo.addEventListener("click", (e) => {
   if (track > 0) {
     track--;
   }
-  //action
-  undoRedoCanvas({
+
+  let data = {
     trackValue: track,
     undoRedoTracker,
-  });
+  };
+
+  socket.emit("redoUndo", data);
 });
 
 redo.addEventListener("click", (e) => {
   if (track < undoRedoTracker.length - 1) {
     track++;
   }
-  //action
-  undoRedoCanvas({
+
+  let data = {
     trackValue: track,
     undoRedoTracker,
-  });
+  };
+  socket.emit("redoUndo", data);
 });
 
 function undoRedoCanvas(trackObj) {
@@ -133,4 +155,19 @@ download.addEventListener("click", (e) => {
   a.href = url;
   a.download = "board.jpg";
   a.click();
+});
+
+socket.on("beginPath", (data) => {
+  //data -> data from server
+  beginPath(data);
+});
+
+socket.on("drawStroke", (data) => {
+  //data -> data from server
+  drawStroke(data);
+});
+
+socket.on("redoUndo", (data) => {
+  //data -> data from server
+  undoRedoCanvas(data);
 });
