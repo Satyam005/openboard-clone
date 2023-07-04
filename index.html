@@ -31,7 +31,7 @@
 
     <div class="pencil__tool">
       <div class="pencil__width__container">
-        <input type="range" min="2" max="10" value="3" />
+        <input type="range" min="2" max="10" value="3" class="pencil__width" />
       </div>
       <div class="pencil__color__container">
         <div class="black pencil__color"></div>
@@ -40,18 +40,10 @@
       </div>
     </div>
     <div class="eraser__tool">
-      <input type="range" min="2" max="10" value="3" />
+      <input type="range" min="2" max="10" value="3" class="eraser__width" />
     </div>
-
-    <!-- <div class="sticky__container">
-      <div class="header__container">
-        <div class="minimize"></div>
-        <div class="remove"></div>
-      </div>
-      <div class="note__container">
-        <textarea></textarea>
-      </div>
-    </div> -->
+    <canvas></canvas>
     <script src="./tools.js"></script>
+    <script src="./canvas.js"></script>
   </body>
 </html>
