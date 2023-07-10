@@ -11,9 +11,9 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-
-    <title>Openboard</title>
+    <link rel="icon" href="./Icons/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="style.css" />
+    <title>Openboard</title>
   </head>
   <body>
     <div class="options__container">
@@ -49,7 +49,7 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      let socket = io.connect("http://localhost:3000");
+      let socket = io.connect("http://127.0.0.1:5000/");
     </script>
     <script src="./tools.js"></script>
     <script src="./canvas.js"></script>
